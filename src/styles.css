@@ -61,8 +61,148 @@ h6 {
   isolation: isolate;
 }
 
+@font-face {
+  font-family: 'SatoshiRegular';
+  src: url('./Satoshi-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url('./Poppins-SemiBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --heading-font: 'PoppinsSemiBold', sans-serif;
+  --primary-font: 'SatoshiRegular', sans-serif;
+}
+
 /* General CSS */
 
-h1 {
-  color: red;
+body {
+  background-color: #282828;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#gameArea {
+  min-height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preGame {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+#preGame h1 {
+  font-family: var(--heading-font);
+  color: #f9f5d7;
+}
+
+#startGame {
+  font-family: var(--primary-font);
+  font-size: large;
+  color: #282828;
+  background-color: #98971a;
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 2px;
+}
+
+#startGame:hover {
+  cursor: pointer;
+  background-color: #b8bb26;
+}
+
+#playArea {
+  width: calc(90% + 40px);
+  max-width: 1040px;
+  margin: 0 auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#boardLabel {
+  font-family: var(--heading-font);
+  color: #98971a;
+  margin-bottom: 20px;
+}
+
+#gameboards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.board {
+  width: calc(50% - 20px);
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #f9f5d7;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.tile {
+}
+
+.tile:hover {
+  background-color: #333333;
+  cursor: pointer;
+}
+
+#resetGame {
+  color: #f9f5d7;
+  background-color: #cc241d;
+  font-family: var(--heading-font);
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 2px;
+  margin-top: 35px;
+}
+
+#resetGame:hover {
+  background-color: #fb4934;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #playArea {
+    width: 90%;
+    align-items: center;
+  }
+
+  #gameboards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .board {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  #gameboards > div:first-child {
+    margin-bottom: 35px;
+  }
 }
