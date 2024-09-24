@@ -1,14 +1,6 @@
 import Ship from './ship';
 import printBoard from './pretty-print';
 
-class Tile {
-  constructor() {
-    this.tile = {
-      isShip: false,
-    };
-  }
-}
-
 class Gameboard {
   constructor() {
     this.board = [];
@@ -60,7 +52,27 @@ class Gameboard {
     if (orientation === undefined) {
       throw new Error('No orientation provided!');
     }
-    printBoard(this.board);
+    // printBoard(this.board);
+  }
+
+  receiveAttack(x, y) {
+    if (x > 9 || y > 9) {
+      throw new Error('Trying to attack outside board');
+    } else {
+      this.board[y][x].isHit = true;
+      if (this.board[y][x].ship !== null) {
+        this.board[y][x].ship.hit();
+      }
+    }
+    // printBoard(this.board);
+  }
+
+  sunk() {
+    let sunkShips = 0;
+    this.ships.forEach((ship) => (ship.sunk === true ? sunkShips++ : null));
+    return sunkShips === this.ships.length
+      ? 'All ships sunk!'
+      : `${sunkShips} ships sunk!`;
   }
 }
 

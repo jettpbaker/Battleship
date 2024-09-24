@@ -56,3 +56,38 @@ test('Place no ship', () => {
   const gameboard = new Gameboard();
   expect(gameboard.board[9][9].ship).toBe(null);
 });
+
+test('Hit empty tile', () => {
+  const gameboard = new Gameboard();
+  gameboard.receiveAttack(0, 0);
+  expect(gameboard.board[0][0].isHit).toBe(true);
+});
+
+test('Hit tile with a ship', () => {
+  const gameboard = new Gameboard();
+  gameboard.place(0, 0, 'vertical', 5);
+  gameboard.receiveAttack(0, 1);
+  expect(gameboard.board[1][0].isHit).toBe(true);
+  expect(gameboard.board[1][0].ship).toEqual({
+    hits: 1,
+    length: 5,
+    sunk: false,
+  });
+});
+
+test('Sink a ship', () => {
+  const gameboard = new Gameboard();
+  gameboard.place(6, 5, 'vertical', 2);
+  gameboard.place(0, 0, 'vertical', 2);
+  gameboard.receiveAttack(0, 0);
+  gameboard.receiveAttack(0, 1);
+  expect(gameboard.sunk()).toBe('1 ships sunk!');
+});
+
+test('Sink all ships', () => {
+  const gameboard = new Gameboard();
+  gameboard.place(0, 0, 'vertical', 2);
+  gameboard.receiveAttack(0, 0);
+  gameboard.receiveAttack(0, 1);
+  expect(gameboard.sunk()).toBe('All ships sunk!');
+});

@@ -20,11 +20,11 @@ test('Ship sinks when hits equal length', () => {
   ship.hit();
   ship.hit();
   ship.hit();
-  expect(ship.isSunk()).toBe(true);
+  expect(ship.sunk).toBe(true);
 });
 
-test("Ship sinks when hits don't equal length", () => {
+test("Ship doesn't sink when hits don't equal length", () => {
   const ship = new Ship(3);
   ship.hit();
-  expect(ship.isSunk()).toBe(false);
+  expect(ship.sunk).toBe(false);
 });
