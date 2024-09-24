@@ -34,14 +34,14 @@ test('Place ship out of bounds horizontally', () => {
   const gameboard = new Gameboard();
   expect(() => {
     gameboard.place(7, 0, 'horizontal', 5);
-  }).toThrow('Trying to place ship out of bounds!');
+  }).toThrow('Invalid ship placement!');
 });
 
 test('Place ship out of bounds vertically', () => {
   const gameboard = new Gameboard();
   expect(() => {
     gameboard.place(0, 7, 'vertical', 5);
-  }).toThrow('Trying to place ship out of bounds!');
+  }).toThrow('Invalid ship placement!');
 });
 
 test('Place ship on another ship', () => {
@@ -49,7 +49,7 @@ test('Place ship on another ship', () => {
   gameboard.place(0, 0, 'vertical', 5);
   expect(() => {
     gameboard.place(0, 2, 'horizontal', 5);
-  }).toThrow('Ship already placed here!');
+  }).toThrow('Invalid ship placement!');
 });
 
 test('Place no ship', () => {
@@ -75,19 +75,16 @@ test('Hit tile with a ship', () => {
   });
 });
 
-test('Sink a ship', () => {
-  const gameboard = new Gameboard();
-  gameboard.place(6, 5, 'vertical', 2);
-  gameboard.place(0, 0, 'vertical', 2);
-  gameboard.receiveAttack(0, 0);
-  gameboard.receiveAttack(0, 1);
-  expect(gameboard.sunk()).toBe('1 ships sunk!');
-});
-
 test('Sink all ships', () => {
   const gameboard = new Gameboard();
   gameboard.place(0, 0, 'vertical', 2);
   gameboard.receiveAttack(0, 0);
   gameboard.receiveAttack(0, 1);
-  expect(gameboard.sunk()).toBe('All ships sunk!');
+  expect(gameboard.allShipsSunk()).toBe(true);
+});
+
+test('Randomly place ships', () => {
+  const gameboard = new Gameboard();
+  gameboard.randomizeShips();
+  expect(gameboard.ships.length).toBe(5);
 });

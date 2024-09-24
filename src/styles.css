@@ -186,6 +186,15 @@ body {
   cursor: pointer;
 }
 
+.ship {
+  border: 1px solid #458588;
+  background-color: #97b9ba;
+}
+
+.ship:hover {
+  background-color: #b3cdce;
+}
+
 @media (max-width: 768px) {
   #playArea {
     width: 90%;
