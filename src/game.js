@@ -6,7 +6,7 @@ class Game {
       human: undefined,
       computer: undefined,
     };
-    this.turn = undefined;
+    this.humanTurn = undefined;
   }
 
   startGame() {
@@ -20,23 +20,17 @@ class Game {
     this.renderPlayerBoard();
     this.renderComputerBoard();
 
-    this.turn = this.players.human;
+    this.humanTurn = true;
   }
 
   resetGame() {
-    this.players.human = undefined;
     this.players.human = new HumanPlayer();
-    this.players.computer = undefined;
     this.players.computer = new ComputerPlayer();
-    this.turn = undefined;
-    this.turn = this.players.human;
+    this.humanTurn = true;
   }
 
   nextTurn() {
-    this.turn =
-      this.turn === this.players.human
-        ? this.players.computer
-        : this.players.human;
+    this.humanTurn = this.humanTurn === true ? false : true;
   }
 
   renderPlayerBoard() {
@@ -64,11 +58,13 @@ class Game {
     });
   }
 
-  playerAttack(x, y) {
-    if (this.turn !== this.players.human) {
+  playerAttack = (event) => {
+    if (this.humanTurn !== true) {
       return;
     }
-  }
+
+    console.log(event);
+  };
 }
 
 export { Game };
