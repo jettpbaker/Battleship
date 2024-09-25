@@ -6,25 +6,27 @@ class Player {
   }
 
   attack(opponent, x, y) {
-    opponent.gameboard.receiveAttack(x, y);
+    return opponent.gameboard.receiveAttack(x, y);
   }
 }
 
 class HumanPlayer extends Player {
   attack(opponent, x, y) {
-    super.attack(opponent, x, y);
+    return super.attack(opponent, x, y);
   }
 }
 
 class ComputerPlayer extends Player {
   attack(opponent) {
-    const x = Math.floor(Math.random() * 10);
-    const y = Math.floor(Math.random() * 10);
+    return new Promise((resolve) => {
+      const x = Math.floor(Math.random() * 10);
+      const y = Math.floor(Math.random() * 10);
 
-    setTimeout(() => {
-      super.attack(opponent, x, y);
-    }, 1500);
+      setTimeout(() => {
+        const result = super.attack(opponent, x, y);
+        resolve(result);
+      }, 500);
+    });
   }
 }
-
 export { HumanPlayer, ComputerPlayer };

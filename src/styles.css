@@ -141,7 +141,7 @@ body {
 
 #boardLabel {
   font-family: var(--heading-font);
-  color: #98971a;
+  color: #83a598;
   margin-bottom: 20px;
 }
 
@@ -186,13 +186,53 @@ body {
   cursor: pointer;
 }
 
-.ship {
-  border: 1px solid #458588;
-  background-color: #97b9ba;
+#playerBoard .ship {
+  border: 1px solid #689d6a;
+  background-color: #8ec07c;
 }
 
-.ship:hover {
-  background-color: #b3cdce;
+#playerBoard .ship:hover {
+  background-color: #a6d096;
+}
+
+#computerBoard .ship {
+  /* background-color: gold; */
+  background-color: #282828;
+}
+
+#computerBoard .ship:hover {
+  background-color: #333333;
+}
+
+.hit {
+  border: 1px solid #b16286;
+  background-color: #e2a8b7;
+}
+
+.hit:hover {
+  background-color: #f2c5d1;
+}
+
+#computerBoard .ship.hit,
+#playerBoard .ship.hit {
+  border: 1px solid #d79921;
+  background-color: #f9cc64;
+}
+
+#computerBoard .ship.hit:hover,
+#playerBoard .ship.hit:hover {
+  background-color: #ffdb86;
+}
+
+#computerBoard .ship.hit.sunk,
+#playerBoard .ship.hit.sunk {
+  border: 1px solid #d65d0e;
+  background-color: #fe8019;
+}
+
+#computerBoard .ship.hit.sunk:hover,
+#playerBoard .ship.hit.sunk:hover {
+  background-color: #ff9239;
 }
 
 @media (max-width: 768px) {
@@ -214,4 +254,43 @@ body {
   #gameboards > div:first-child {
     margin-bottom: 35px;
   }
+}
+
+#winScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#winScreen #winOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#winScreen h1 {
+  font-family: var(--heading-font);
+  color: #f9f5d7;
+  text-align: center;
+}
+
+#winScreen button {
+  color: #f9f5d7;
+  background-color: #cc241d;
+  font-family: var(--heading-font);
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 2px;
+  margin-top: 20px;
+  cursor: pointer;
 }

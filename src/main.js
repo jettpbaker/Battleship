@@ -8,10 +8,6 @@ const inGameView = document.querySelector('#playArea');
 const startGameButton = document.querySelector('#startGame');
 
 function loadNewGame() {
-  function log() {
-    console.log('test');
-  }
-
   preGameView.classList.add('hidden');
   inGameView.classList.remove('hidden');
   game.startGame();
@@ -22,6 +18,9 @@ function loadNewGame() {
   tileElements.forEach((tile) => {
     tile.addEventListener('click', game.playerAttack);
   });
+
+  const resetGameButton = document.querySelector('#resetGame');
+  resetGameButton.addEventListener('click', game.resetGame);
 }
 
 startGameButton.addEventListener('click', loadNewGame);
