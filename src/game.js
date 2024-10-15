@@ -66,9 +66,9 @@ class Game {
     });
 
     if (sunkShips.length === 5) {
-      for (let i = 0; i <= 99; i++) {
-        tileElements[i].removeEventListener('click', this.playerAttack);
-      }
+      // for (let i = 0; i <= 99; i++) {
+      //   tileElements[i].removeEventListener('click', this.playerAttack);
+      // }
       const showWinScreen = () => {
         const winScreen = document.querySelector('#winScreen');
         const winnerText = document.querySelector('#winnerText');
@@ -201,5 +201,7 @@ class Game {
     }
   }
 }
+
+// Adding a comment for a test commit
 
 export { Game };
